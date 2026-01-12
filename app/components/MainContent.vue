@@ -141,7 +141,7 @@
                 >
                   <UButton
                     class="w-full flex justify-center text-2xl active:bg-primary relative"
-                    @click="changeNavMode"
+                    @click="changeNavMode('security')"
                   >
                     <UIcon
                       name="i-lucide-arrow-big-right"
@@ -157,7 +157,7 @@
                 >
                   <UButton
                     class="w-full flex justify-center bg-error hover:bg-error/80 active:bg-error text-2xl relative"
-                    @click="changeNavMode"
+                    @click="changeNavMode('insecurity')"
                   >
                     <UIcon
                       name="i-lucide-arrow-big-right"
@@ -268,8 +268,10 @@ defineShortcuts({
 
 const hoveredIndex = ref(0)
 
-function changeNavMode() {
-  navMode.value = navMode.value === 'security' ? 'insecurity' : 'security'
+function changeNavMode(mode: string) {
+  if(mode !== navMode.value){
+    navMode.value = navMode.value === 'security' ? 'insecurity' : 'security'
+  }
   open.value = false
   console.log(navMode.value)
 }
