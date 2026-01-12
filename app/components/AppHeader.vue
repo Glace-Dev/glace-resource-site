@@ -2,7 +2,11 @@
   <UHeader class="dark:border-b-black/20 backdrop-blur-3x">
     <template #left>
       <div class="flex items-center gap-3">
-        <UAvatar class="h-10 w-auto" size="3xl" src="/favicon.ico" />
+        <UAvatar
+          class="h-10 w-auto"
+          size="3xl"
+          src="/favicon.ico"
+        />
         <UButton
           icon="i-heroicons-bars-3"
           variant="ghost"
@@ -36,11 +40,11 @@
 <script setup lang="ts">
 // 定义侧边栏状态，默认为开启 (true)
 // 使用 useState('isSidebarOpen') 确保在所有组件中共享同一个响应式变量
-const isSidebarOpen = useState<boolean>("isSidebarOpen", () => true);
+const isSidebarOpen = useState<boolean>('isSidebarOpen', () => true)
 
 const toggleSidebar = () => {
-  isSidebarOpen.value = !isSidebarOpen.value;
-};
+  isSidebarOpen.value = !isSidebarOpen.value
+}
 </script>
 
 <style lang="scss">

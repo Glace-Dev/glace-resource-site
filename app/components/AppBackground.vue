@@ -1,6 +1,7 @@
 <template>
-  <div></div>
+  <div />
 </template>
+
 <script lang="ts" setup>
 import * as ThumbHash from '~/assets/js/thumbhash'
 
