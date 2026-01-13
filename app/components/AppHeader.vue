@@ -16,7 +16,7 @@
           @click="toggleSidebar"
         />
         <h1
-          class="text-[0.5em] sm:text-3xl sm:pl-2 font-bold tracking-wide transition-all duration-300 bg-clip-text text-transparent bg-linear-to-br from-zinc-900 via-zinc-700 to-zinc-400 dark:from-white dark:via-white/80 dark:to-white/20"
+          class="text-md sm:text-3xl sm:pl-2 font-bold tracking-wide transition-all duration-300 bg-clip-text text-transparent bg-linear-to-br from-zinc-900 via-zinc-700 to-zinc-400 dark:from-white dark:via-white/80 dark:to-white/20"
         >
           glace的资源站
         </h1>

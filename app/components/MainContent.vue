@@ -269,7 +269,7 @@ defineShortcuts({
 const hoveredIndex = ref(0)
 
 function changeNavMode(mode: string) {
-  if(mode !== navMode.value){
+  if (mode !== navMode.value) {
     navMode.value = navMode.value === 'security' ? 'insecurity' : 'security'
   }
   open.value = false
