@@ -127,7 +127,7 @@
         {
           "name": "GAL图书馆",
           "url": "https://gallibrary.pw/index.html",
-          "description": "Galgame 存档与资料",
+          "description": "Galgame 资料",
           "logo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADBklEQVR4AWySb2hVdRjHP8+55153crvpnXdtpCKu2pxruesyXfmibAmChBREQwgjsxfNms5AgqDoD2liGBHRXgS96UXvehNYQlDJqGytxTbW0mTd3bG5uXudu957zu/4e85FUfDhPIff7/k93+/z1wnvIMaYyGqMCX3fD4MgCFWMMaExRo831eEWsVZURQTriZ5jsRiO42CMiTxF7FsYRm9qcPSnjqoigohgIyIWpMCRwT+YzU1HJCISEYlU/BTjWCrliIAaRcEatZDPc/LoW5w6fJR3X36db778inK5HBGpj4JFBCe0P5FKVI2o4L9+HeT4gf1MfP8dtTbHR5Jz/Nj/GSd7+5jJTqE+SqDqiK1HGdVYWMhzuv9zzn7Ux+K/E+zJ3MPezQkbNcBzPcYGfuGT3kNcGBmxNgfN3rkB/vv3Qd5+8QBfnPiUa/klnt1ah0uJC9OLVLsuD6QMzXXVZIdHONZzkPzCAlGfYvbx7Jkf+Lj3CLMT/7BhdZL7Gu5iamaJUQtOeQkmL80T+EXKhQJhzTKS6RSlYhEV58+BAU71vUk8LFK/wqNp1TLG/r/CaK7AfGGJK0HAvXd7nD43y38ll8d2PkGm81GW19TYCkKc2emcvVThS4Kp+av8NJ7n3MWrePE4WxtrmZxZ5Nvfsqxrb6JzVxe53GU6nnwKz/OikTqZbZ20bHmYNWvX4KZWkM2XcRNxhmwW/Wcm+frnLDSsY6cFZ6fn2LG3m/Ubmitg3ZWV6TS7X9hHSWK0b2xjfXMjc0XDkh+nHIvTsq2Dx7t2MDR+kd37X2LL9u3Y9Y4aKCJEU7i/tYVnel6x0S+zemWKTOYhgqoEjZkHabPn0fPn6erupnVTu22mj45cRCo90IuOcpMto/fD9yklk1S5wp6nd9my1jI8PsHzPT20dWzGL/s4sVi0tbpEIjYDPegGKkm6oZ5XP3iHsK6eoeEx4qtqOXLiGE2tG9F3N+7eBsaKIyKR8QZJdfVy3jj+Hs8dPsi+Q6+RrksT+H6UtgZTFRELrXzXAQAA//8Dyw3GAAAABklEQVQDANgsiSMs8xfsAAAAAElFTkSuQmCC"
         },
         {
@@ -517,7 +517,7 @@
       ]
     },
     "network_proxy": {
-      "label": "网络与服务",
+      "label": "网络服务",
       "icon": "i-heroicons-globe-alt",
       "items": [
         {
@@ -643,7 +643,7 @@
       ]
     },
     "system_security": {
-      "label": "系统与安全",
+      "label": "系统安全",
       "icon": "i-heroicons-shield-check",
       "items": [
         {

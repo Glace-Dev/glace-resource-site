@@ -50,6 +50,7 @@
               <!-- 图标容器 - 响应式大小 -->
               <UAvatar
                 :src="item.logo"
+                :alt="item.name"
                 :class="[
                   'rounded-full bg-gray-100/80 dark:bg-gray-800/80 backdrop-blur-sm flex items-center justify-center shrink-0 shadow-inner',
                   isSidebarOpen

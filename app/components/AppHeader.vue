@@ -4,11 +4,13 @@
       <div class="flex items-center gap-3">
         <UAvatar
           class="h-10 w-auto"
+          alt="avatar"
           size="3xl"
           src="/favicon.ico"
         />
         <UButton
           icon="i-heroicons-bars-3"
+          name="foldNavButton"
           variant="ghost"
           color="neutral"
           size="xl"

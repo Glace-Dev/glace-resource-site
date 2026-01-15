@@ -18,7 +18,10 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/png', href: '/img/favicon-48.png' },
         // Apple 设备图标（建议也加上）
         { rel: 'apple-touch-icon', href: '/img/favicon-48.png' }
-      ]
+      ],
+      htmlAttrs: {
+        lang: 'zh-CN' // 设置为中文
+      }
     }
   },
 
