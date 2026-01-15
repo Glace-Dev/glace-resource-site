@@ -10,7 +10,6 @@
         />
         <UButton
           icon="i-heroicons-bars-3"
-          name="foldNavButton"
           variant="ghost"
           color="neutral"
           size="xl"

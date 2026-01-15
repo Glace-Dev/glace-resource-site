@@ -1,7 +1,6 @@
 <template>
   <UButton
     :icon="currentIcon"
-    name="themeButton"
     variant="ghost"
     color="neutral"
     class="hover:bg-white/10 transition-none"

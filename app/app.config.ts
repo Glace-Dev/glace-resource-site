@@ -6,7 +6,7 @@ export default defineAppConfig({
     },
     header: {
       slots: {
-        root: 'bg-background/50 backdrop-blur-sm min-h-[20px]'
+        root: 'bg-background/50 backdrop-blur-sm min-h-5'
       }
     }
   }
