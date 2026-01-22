@@ -513,6 +513,18 @@
           "url": "https://www.notion.so/",
           "description": "笔记与协作社区",
           "logo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACeUlEQVR4AXyTP0iicRjHvwW2tNSQDQ4tdW1RQ9MVeEuFNSR0DRUcGRlFww0VVEMa0WCSF/SHQzgcVERFHdRBRG8QQRcdVFDQU7jlRETxz3CL9zw/MDqUXvi87/s8v+f5vs/z+z3vYKfTGSYUxFdCR3wn7ESEyDabzT/lcvlvLpfrNBqN3+T7gjfXIL3/8Hg8Pq1Wazg4ODjd3NxULywsfJ6bm/tIfFheXpZub29LLi8vsbKyIvP7/SYSCRFjlAsWkFMi4vE49vb2oNPpEA6HkUgkBJFIBIFAAHa7HWazGUajEfSxT+12+xeJKFiAhUDKeHl5QTQaFUF3d3c4OzvD8fExdnd3sba2BrVajUwmA41Gw/YwJepeBciAyWSCw+FAsVhEvV7HxMQEZmZmsLGxgfPzcxgMBoRCIWSzWaTTaU4Z+0+APW63W7Rxc3MDpVIpvrq6uopSqQSbzQan0wmZTMahgh4B9lKPGBoaEoEPDw/swuTkJJ6ennB0dCTs7q2vwNXVFUZHRzEyMiL65XKlUikkEomgm8zPvgK8wHAbtVoNKpUKtOvs6uFdAblcjv39fXHEt7e36He9K8AJPBdTU1OwWCxs9sACmdnZ2Z4FdnD5vA+Pj49s9oUFtNwrb1A3Qq/XY319HVarVbiWlpbEFJ6cnAj77W1wYGDg5/z8vJ6nixdarRYODw9xf3+Pi4sLMTDJZFKcCJ//8/MzeEo5luEK+Kmh4LRCocD4+Pgr09PTWFxcxM7ODq6vr0VFwWAQlUpFTCUlxoUAVdEiQ+nz+RKpVAqFQqGVz+fL9CvnqtVqmnzxWCzm83q9HpfL5aA9+ba1tXVKOap/AAAA//+CpdEtAAAABklEQVQDABEGHIkoWUH/AAAAAElFTkSuQmCC"
+        },
+        {
+          "name": "Video.ai",
+          "url": "https://www.vidio.ai/zh-CN/dashboard/all",
+          "description": "AI视频补帧(会有水印)",
+          "logo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABlElEQVR4AaSTvc4xURSF1xoSolW6BSREJ1GpFa5DIkSpoVD66dyFuAAaHY1wC0q9n/j5Zu35zjtmdO87mT37nHXWfubsw3gA3n8JAfz68PY8DyQRzyRNR+zyYnO8Xi+83++vLE0R90cAuVwOjUYDxWIRtVoN5XIZ1WoVlUoF+XwehUIB2Ww2wjCAtiu1Xq9juVyi1+thPp9jOBxiOp1iNBqh3W6j2+2iVCrJ+tOOAUia+Hw+Ld/vdzweD1yvV2vlcrngdrvZ3HnIoMYArjeS1j/5f9E/UBG1QxdksOZqDECGIhlAVOhMyp+hNTKoMYCE34YBRBeADN5OBnQyzCTt4EjKaq1qYAAyKuq/oEWXdXAaKz5fJo8BnJhIJOwtqVQKyWQS6XQa0jKZjI3dHP7lagwgsq9htVqh2WxiPB6j1WphMBig0+mg3+9jNpthMplgv9/LGm3BFP9xOp2wWCzMtF6vsdvtsNlssN1ucTwecTgccD6ffWd42w7CKb4+Iv3+JK01kp9WG38B1I76i2dpCqv6ePwDAAD//3AobtsAAAAGSURBVAMAwHDfEfjOFBoAAAAASUVORK5CYII="
+        },
+        {
+          "name": "EZRemove.ai",
+          "url": "https://ezremove.ai/zh/video-watermark-remover/",
+          "description": "免费在线视频去水印（无需登录，无需注册）",
+          "logo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADdklEQVR4AWyQfUiddRTHz+/lebvPfWnaJG1TFwyaa97arK4KskUx5+YWhsWgEf0xXf+EBlH/LO/GCiLaGgXNC0ULxkI2wzSWzdB2lczFbkFQYHelV693lne6+/K8/34991mvsC/n/M7545zP75yD4Q6qG4iKO/r7hVKsG+gU66JRETo7yT+lnKO/8/8BmqbfP/RoIjbir66YIfXwXeDeqplA1e6Z4GMbrza9eGCyeeL8yZbRDzcCQvy/AI/WON1/ivmlj5nJ9gIIYQRCPUJiGPOSy/XcQhEgUi8nwSstw+c2ewB3EuwmPBKPPc6J0GP/YZi4SAHl0RrOsyzK8SxfZVm+5qxgDRt8RXcA5FpO1HfcPs9KAMAOaUcO5RTJlIB0WjHlB0AX6rEubyNM2kapvEVwxJ0EKb+xvMO4hlqazl2sAXcVD0CwFEQWAWxLlkLKYxNtzy580/7c4tSBg+mSx9ue/n1i/1PTlMlfEawiZItExIH14Aq7DkxHQEBGiClCfjn72p7J8UhrIvHwzgtDDU8Mfd6wa/CL8K5PRjpsA+/jBYeBiU3QrQVw5QEEIYTMRQ3mzgzayXfPP/PD62fGM5fj40yQr2g6TDkWfGuDdNHR7XswDRHExZGJ5/dm4K8jgpExYXHsF6YXVUYq7gd2131yJpFR86lbCmGUMAMEroFFSAhDwbzKNeNl93NwbwDeBMW5IvHXbsZ3NzfLoS1bfwps2tTj21DzUi618ulqOkeMW5Zl6ECtXOEs4smWeHfrEtwW9wCB9aHl8qrQ9bLKstnyyrLe2Te6Tl9/q/vU7JtHOvLp7Im19Kp0cy7NbqaWH5z/2ZQgeruvxPAAfqJ9rWLtM4UXL8vUUjf0nlSgq0soFSTf7joqEmFKFmQi+oJhVV53AqKIAUS9Xu9hGp0WuJJVBTGpEFq3fWvtwT0NrYf2xYYOd34w3Fi5Tj0uibKGTcsUiHz4keODjS7AhXDkAb58oWOZGfb3Zp7XODkI6DoN2wZtMjTauLqGuiWMt/sRuiCLQVFEPolwNbbjlYEQAPp3l0tHnhzmJj4LnKZ4gWq4QG+QAr5BdLJkFnCFn+BJyvglbNvXCBHB5wtEwJU3gRtLhkZ7918b7Wl/L5usOJrS88fmzeq++USub8GqfvVXo/jRVN/uNmNpMDI5duyh+I+5sVLTnwAAAP//1Z2VfAAAAAZJREFUAwDgl3sSpzNVVgAAAABJRU5ErkJggg=="
         }
       ]
     },
