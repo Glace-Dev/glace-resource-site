@@ -99,34 +99,7 @@ import { ref, onMounted } from 'vue'
 import rawNavData from '~/assets/data/nav.json'
 import * as ThumbHash from '~/assets/js/thumbhash'
 
-// 类型定义
-interface NavItem {
-  name: string
-  url: string
-  description: string
-  logo: string
-}
-
-// 单个分类的详细结构
-interface NavGroup {
-  label: string
-  icon: string
-  items: NavItem[]
-}
-
-// 分类集合（对象结构）
-// Record<string, NavGroup> 表示：键是字符串，值是 NavGroup 对象
-interface NavCategory {
-  [key: string]: NavGroup
-}
-
-// 根数据结构
-interface NavData {
-  security: NavCategory
-  insecurity: NavCategory
-}
-
-// --- 2. 状态声明 ---
+// 状态声明
 const navData = rawNavData as NavData
 const activeSection = ref<string | undefined>(undefined)
 
@@ -137,7 +110,7 @@ interface MainContentExpose {
 const mainContentRef = ref<MainContentExpose | null>(null)
 const loading = ref(true)
 
-// --- 3. 逻辑处理 ---
+// 逻辑处理
 onMounted(() => {
   const keys = Object.keys(navData)
   if (keys.length > 0) {
@@ -222,14 +195,13 @@ onMounted(async () => {
 </script>
 
 <style lang="scss">
-/* Hide scrollbar */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 // 背景图片容器逻辑

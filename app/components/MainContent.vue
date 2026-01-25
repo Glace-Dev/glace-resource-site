@@ -9,7 +9,11 @@
         v-for="(section, key) in curentNavData"
         :id="key"
         :key="key"
-        :ref="(el) => { if (el) sectionRefs[key as string] = el as HTMLElement }"
+        :ref="
+          (el) => {
+            if (el) sectionRefs[key as string] = el as HTMLElement;
+          }
+        "
         :data-section="key"
         class="scroll-mt-8 mb-5"
       >
@@ -49,14 +53,17 @@
             <div class="flex items-center gap-2 md:gap-2.5">
               <!-- 图标容器 - 响应式大小 -->
               <UAvatar
-                :src="item.logo"
+                :src="getIcon(item.logo)"
+                referrerpolicy="no-referrer"
                 :alt="item.name"
+                loading="lazy"
                 :class="[
                   'rounded-full bg-gray-100/80 dark:bg-gray-800/80 backdrop-blur-sm flex items-center justify-center shrink-0 shadow-inner',
                   isSidebarOpen
                     ? 'w-7 h-7 md:w-9 md:h-9'
                     : 'w-8 h-8 md:w-9 md:h-9'
                 ]"
+                @error="handleIconError(item.logo)"
               />
 
               <!-- 文字内容 - 响应式字体 -->
@@ -180,46 +187,19 @@
 <script setup lang="ts">
 import navDataJson from '~/assets/data/nav.json'
 
-// 类型定义
-interface NavItem {
-  name: string
-  url: string
-  description: string
-  logo: string
-}
-
-// 单个分类的详细结构
-interface NavGroup {
-  label: string
-  icon: string
-  items: NavItem[]
-}
-
-// 分类集合（对象结构）
-// Record<string, NavGroup> 表示：键是字符串，值是 NavGroup 对象
-interface NavCategory {
-  [key: string]: NavGroup
-}
-
-// 根数据结构
-interface NavData {
-  security: NavCategory
-  insecurity: NavCategory
-}
-// 1. 获取Nav状态
-const navMode = useNavMode()
+// 侧边栏功能
 const navData = navDataJson as NavData
-const curentNavData = computed(() => {
-  return navData[navMode.value]
-})
+const { navMode, handleObserverEntries } = useNavigationStore()
+
+// 侧边栏模式单独获取
+const isSidebarOpen = useSideBarMode()
+
+// 基础响应式数据与计算
 const scrollContainer = ref<HTMLElement | null>(null)
 const sectionRefs = ref<Record<string, HTMLElement>>({})
+const curentNavData = computed(() => navData[navMode.value])
 
-// 共享全局状态
-const activeSection = useState<string>('activeNavId', () => 'anime')
-const isManualScrolling = useState<boolean>('isManualScrolling', () => false)
-const isSidebarOpen = useState<boolean>('isSidebarOpen', () => true)
-
+// 滚动监听逻辑 (IntersectionObserver)
 let observer: IntersectionObserver | null = null
 
 onMounted(() => {
@@ -228,29 +208,16 @@ onMounted(() => {
 
     observer = new IntersectionObserver(
       (entries) => {
-        if (isManualScrolling.value) return
-
-        let maxRatio = 0
-        let activeKey = ''
-
-        entries.forEach((entry) => {
-          if (entry.intersectionRatio > maxRatio) {
-            maxRatio = entry.intersectionRatio
-            activeKey = (entry.target as HTMLElement).dataset.section || ''
-          }
-        })
-
-        if (activeKey) {
-          activeSection.value = activeKey
-        }
+        handleObserverEntries(entries)
       },
       {
         root: scrollContainer.value,
-        rootMargin: '-10% 0px -70% 0px',
+        rootMargin: '-10% 0px -70% 0px', // 顶部 10% 到 底部 70% 的判定区间
         threshold: [0, 0.2, 0.5, 0.8, 1]
       }
     )
 
+    // 开始观察所有 Section 元素
     Object.values(sectionRefs.value).forEach((el) => {
       if (el) observer?.observe(el)
     })
@@ -261,31 +228,77 @@ onUnmounted(() => {
   observer?.disconnect()
 })
 
-// UModal控制
+// 修改内容的类型(security/insecurity)
 const open = ref(false)
+const hoveredIndex = ref(0)
+
 defineShortcuts({
   shift_tab: () => (open.value = !open.value)
 })
 
-const hoveredIndex = ref(0)
-
+/**
+ * 修改当前内容的类型 (security/insecurity)
+ * @param {string} mode - 'security' or 'insecurity'
+ */
 function changeNavMode(mode: string) {
   if (mode !== navMode.value) {
+    // 修改 Store 中的全局状态
     navMode.value = navMode.value === 'security' ? 'insecurity' : 'security'
   }
   open.value = false
-  console.log(navMode.value)
+}
+
+// 1. 记录每个 URL 的失败次数 (0: 原图, 1: 第三方API, 2: 最终兜底)
+const logoRetryLevel = reactive(new Map<string, number>())
+
+/**
+ * 获取图标逻辑
+ */
+function getIcon(url: string) {
+  const level = logoRetryLevel.get(url) || 0
+
+  // 阶段 0：尝试原始 URL
+  if (level === 0) return url
+
+  // 阶段 1：尝试第三方 Favicon API (Google 方案)
+  if (level === 1) {
+    try {
+      const domain = new URL(url).hostname
+      // Google 的 Favicon 服务非常稳定，能自动处理大部分跨域和抓取问题
+      return `https://www.google.com/s2/favicons?sz=128&domain=${domain}`
+    } catch {
+      // 如果 URL 解析失败，直接进入下一阶段
+      return '/img/global.png'
+    }
+  }
+
+  // 阶段 2 及以上：使用本地图片兜底
+  return '/img/global.png'
+}
+
+/**
+ * 错误处理逻辑
+ */
+function handleIconError(url: string) {
+  const currentLevel = logoRetryLevel.get(url) || 0
+
+  // 只有当还没到达最终兜底阶段时，才增加重试层级
+  if (currentLevel < 2) {
+    logoRetryLevel.set(url, currentLevel + 1)
+  }
 }
 </script>
 
-<style scoped>
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
+<style scoped lang="scss">
 .scrollbar-hide {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 .underline-animation {
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
@@ -299,9 +312,9 @@ function changeNavMode(mode: string) {
   background-size: 100% 20%;
   transition: background-size 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-}
 
-.underline-animation:hover {
-  background-size: 100% 50%;
+  &:hover {
+    background-size: 100% 50%;
+  }
 }
 </style>

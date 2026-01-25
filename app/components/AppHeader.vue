@@ -39,9 +39,7 @@
 </template>
 
 <script setup lang="ts">
-// 定义侧边栏状态，默认为开启 (true)
-// 使用 useState('isSidebarOpen') 确保在所有组件中共享同一个响应式变量
-const isSidebarOpen = useState<boolean>('isSidebarOpen', () => true)
+const isSidebarOpen = useSideBarMode()
 
 const toggleSidebar = () => {
   isSidebarOpen.value = !isSidebarOpen.value

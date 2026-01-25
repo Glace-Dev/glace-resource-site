@@ -49,86 +49,35 @@
 <script setup lang="ts">
 import navDataJson from '~/assets/data/nav.json'
 
-// 类型定义
-interface NavItem {
-  name: string
-  url: string
-  description: string
-  logo: string
-}
-
-// 单个分类的详细结构
-interface NavGroup {
-  label: string
-  icon: string
-  items: NavItem[]
-}
-
-// 分类集合（对象结构）
-// Record<string, NavGroup> 表示：键是字符串，值是 NavGroup 对象
-interface NavCategory {
-  [key: string]: NavGroup
-}
-
-// 根数据结构
-interface NavData {
-  security: NavCategory
-  insecurity: NavCategory
-}
-
-// 使用断言将其转为我们定义的接口类型
+// 获取状态与数据
 const navData = navDataJson as NavData
-// 获取nav状态
-const navMode = useNavMode()
+const isSidebarOpen = useSideBarMode()
 
-// 假设默认显示 security 内容
-const items = computed(() => {
-  return navData[navMode.value]
-})
+// 从 Store 中解构逻辑
+const { navMode, activeSection, scrollToSection } = useNavigationStore()
 
-// 订阅全局状态
-const isSidebarOpen = useState<boolean>('isSidebarOpen', () => true)
-const activeSection = useState<string>('activeNavId', () => 'anime')
-const isManualScrolling = useState<boolean>('isManualScrolling', () => false)
+// 计算当前显示的菜单项
+const items = computed(() => navData[navMode.value])
 
+// 生命周期
 onMounted(() => {
-  isSidebarOpen.value = window.innerWidth >= 768 ? true : false
+  isSidebarOpen.value = window.innerWidth >= 768
 })
 
+// 交互处理
 const handleNavigate = (key: string) => {
-  activeSection.value = key
-
-  const container = document.getElementById('scroll-container')
-  const target = document.getElementById(key)
-
-  if (container && target) {
-    isManualScrolling.value = true
-
-    // 精准相对定位计算：(目标相对于视口距离 - 容器相对于视口距离) + 当前容器滚动高度
-    const containerRect = container.getBoundingClientRect()
-    const targetRect = target.getBoundingClientRect()
-    const scrollTarget
-      = container.scrollTop + (targetRect.top - containerRect.top)
-
-    container.scrollTo({
-      top: scrollTarget - 20, // 预留 20px 顶部边距
-      behavior: 'smooth'
-    })
-
-    // 延时解锁，等待平滑滚动完成
-    setTimeout(() => {
-      isManualScrolling.value = false
-    }, 1000)
-  }
+  // 调用 Store 中的封装逻辑
+  scrollToSection(key)
 }
 </script>
 
-<style scoped>
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
+<style scoped lang="scss">
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 </style>
