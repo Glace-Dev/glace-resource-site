@@ -9,11 +9,7 @@
         v-for="(section, key) in curentNavData"
         :id="key"
         :key="key"
-        :ref="
-          (el) => {
-            if (el) sectionRefs[key as string] = el as HTMLElement;
-          }
-        "
+        :ref="(el) => { if (el) sectionRefs[key as string] = el as HTMLElement }"
         :data-section="key"
         class="scroll-mt-8 mb-5"
       >
@@ -53,10 +49,8 @@
             <div class="flex items-center gap-2 md:gap-2.5">
               <!-- 图标容器 - 响应式大小 -->
               <UAvatar
-                :src='item.logo'
-                referrerpolicy="no-referrer"
+                :src="item.logo"
                 :alt="item.name"
-                loading="lazy"
                 :class="[
                   'rounded-full bg-gray-100/80 dark:bg-gray-800/80 backdrop-blur-sm flex items-center justify-center shrink-0 shadow-inner',
                   isSidebarOpen
@@ -186,78 +180,101 @@
 <script setup lang="ts">
 import navDataJson from '~/assets/data/nav.json'
 
-// 侧边栏功能
+// 1. 获取Nav状态
+const navMode = useNavMode()
 const navData = navDataJson as NavData
-const { navMode, handleObserverEntries } = useNavigationStore()
-
-// 侧边栏模式单独获取
-const isSidebarOpen = useSideBarMode()
-
-// 基础响应式数据与计算
+const curentNavData = computed(() => {
+  return navData[navMode.value]
+})
 const scrollContainer = ref<HTMLElement | null>(null)
 const sectionRefs = ref<Record<string, HTMLElement>>({})
-const curentNavData = computed(() => navData[navMode.value])
 
-// 滚动监听逻辑 (IntersectionObserver)
+// 获取全局状态
+const activeSection = useActiveNavId()
+const isManualScrolling = useManualScrolling()
+const isSidebarOpen = useSideBarMode()
+
 let observer: IntersectionObserver | null = null
 
-onMounted(() => {
+// --- 核心方法：初始化/刷新观察器 ---
+const initObserver = () => {
+  if (observer) observer.disconnect()
+
+  // 清空之前的旧引用，确保重新绑定
+  sectionRefs.value = {}
+
   nextTick(() => {
     if (!scrollContainer.value) return
 
     observer = new IntersectionObserver(
       (entries) => {
-        handleObserverEntries(entries)
+        // 如果是手动点击引起的滚动，直接跳过逻辑
+        if (isManualScrolling.value) return
+
+        // 找到当前进入视口比例最高的元素
+        const visibleEntry = entries.find(entry => entry.isIntersecting)
+        if (visibleEntry) {
+          const id = (visibleEntry.target as HTMLElement).dataset.section
+          if (id && activeSection.value !== id) {
+            activeSection.value = id
+          }
+        }
       },
       {
         root: scrollContainer.value,
-        rootMargin: '-10% 0px -70% 0px', // 顶部 10% 到 底部 70% 的判定区间
-        threshold: [0, 0.2, 0.5, 0.8, 1]
+        // 判定区域集中在屏幕中上部，提升灵敏度
+        rootMargin: '-20% 0px -80% 0px',
+        threshold: [0, 0.1, 0.5]
       }
     )
 
-    // 开始观察所有 Section 元素
-    Object.values(sectionRefs.value).forEach((el) => {
-      if (el) observer?.observe(el)
-    })
+    // 重新观察当前模式下的所有 section
+    const elements = scrollContainer.value.querySelectorAll('section[data-section]')
+    elements.forEach(el => observer?.observe(el))
   })
+}
+
+// 监听导航模式变化：当数据切换时，必须销毁并重建观察器
+watch(navMode, () => {
+  // 重置状态
+  const firstKey = Object.keys(curentNavData.value)[0]
+  if (firstKey) activeSection.value = firstKey
+
+  // 延迟初始化确保 DOM 已渲染
+  initObserver()
+}, { immediate: true })
+
+onMounted(() => {
+  initObserver()
 })
 
 onUnmounted(() => {
   observer?.disconnect()
 })
 
-// 修改内容的类型(security/insecurity)
+// UModal 及切换逻辑
 const open = ref(false)
+defineShortcuts({ shift_tab: () => (open.value = !open.value) })
 const hoveredIndex = ref(0)
 
-defineShortcuts({
-  shift_tab: () => (open.value = !open.value)
-})
-
-/**
- * 修改当前内容的类型 (security/insecurity)
- * @param {string} mode - 'security' or 'insecurity'
- */
-function changeNavMode(mode: string) {
+function changeNavMode(mode: 'security' | 'insecurity') {
   if (mode !== navMode.value) {
-    // 修改 Store 中的全局状态
-    navMode.value = navMode.value === 'security' ? 'insecurity' : 'security'
+    navMode.value = mode
+    // 切换模式后将滚动条重置到顶部
+    scrollContainer.value?.scrollTo({ top: 0 })
   }
   open.value = false
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
 .scrollbar-hide {
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
 .underline-animation {
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
@@ -271,9 +288,9 @@ function changeNavMode(mode: string) {
   background-size: 100% 20%;
   transition: background-size 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+}
 
-  &:hover {
-    background-size: 100% 50%;
-  }
+.underline-animation:hover {
+  background-size: 100% 50%;
 }
 </style>

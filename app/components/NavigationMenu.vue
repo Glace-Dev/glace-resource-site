@@ -49,35 +49,71 @@
 <script setup lang="ts">
 import navDataJson from '~/assets/data/nav.json'
 
-// 获取状态与数据
+// 使用断言将其转为我们定义的接口类型
 const navData = navDataJson as NavData
+// 获取nav状态
+const navMode = useNavMode()
+
+// 假设默认显示 security 内容
+const items = computed(() => {
+  return navData[navMode.value]
+})
+
+// 获取全局状态
 const isSidebarOpen = useSideBarMode()
+const activeSection = useActiveNavId()
+const isManualScrolling = useManualScrolling()
 
-// 从 Store 中解构逻辑
-const { navMode, activeSection, scrollToSection } = useNavigationStore()
+const handleNavigate = (key: string) => {
+  const container = document.getElementById('scroll-container')
+  const target = document.getElementById(key)
 
-// 计算当前显示的菜单项
-const items = computed(() => navData[navMode.value])
+  if (container && target) {
+    // 1. 立即锁定：阻止 IntersectionObserver 的回调逻辑
+    isManualScrolling.value = true
+    // 2. 立即更新 UI 高亮
+    activeSection.value = key
 
-// 生命周期
+    const containerRect = container.getBoundingClientRect()
+    const targetRect = target.getBoundingClientRect()
+    const scrollTarget = container.scrollTop + (targetRect.top - containerRect.top)
+
+    // 3. 执行平滑滚动
+    container.scrollTo({
+      top: scrollTarget - 20,
+      behavior: 'smooth'
+    })
+
+    // 4. 精准解锁：监听滚动停止
+    // 使用一次性监听器 (once: true)
+    const handleScrollEnd = () => {
+      // 延迟一小段时间确保 Observer 回调彻底走完
+      setTimeout(() => {
+        isManualScrolling.value = false
+      }, 50)
+    }
+
+    // 优先使用现代浏览器的 scrollend 事件，否则回退到 setTimeout
+    if ('onscrollend' in window) {
+      container.addEventListener('scrollend', handleScrollEnd, { once: true })
+    } else {
+      // 回退方案：根据滚动距离动态计算或使用固定长延迟
+      setTimeout(handleScrollEnd, 800)
+    }
+  }
+}
+
 onMounted(() => {
   isSidebarOpen.value = window.innerWidth >= 768
 })
-
-// 交互处理
-const handleNavigate = (key: string) => {
-  // 调用 Store 中的封装逻辑
-  scrollToSection(key)
-}
 </script>
 
-<style scoped lang="scss">
+<style scoped>
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
 }
 </style>
