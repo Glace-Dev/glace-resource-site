@@ -3,7 +3,7 @@
     :icon="currentIcon"
     variant="ghost"
     color="neutral"
-    class="hover:bg-white/10 transition-none"
+    class="hover:bg-(--bg-color-button)/10 active:bg-(--bg-color-button)/20 transition-none"
     @click="toggleColorMode"
   />
 </template>

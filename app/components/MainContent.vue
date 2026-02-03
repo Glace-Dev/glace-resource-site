@@ -9,7 +9,11 @@
         v-for="(section, key) in curentNavData"
         :id="key"
         :key="key"
-        :ref="(el) => { if (el) sectionRefs[key as string] = el as HTMLElement }"
+        :ref="
+          (el) => {
+            if (el) sectionRefs[key as string] = el as HTMLElement;
+          }
+        "
         :data-section="key"
         class="scroll-mt-8 mb-5"
       >
@@ -28,12 +32,7 @@
 
         <!-- 内容 - 动态列数 -->
         <div
-          :class="[
-            'grid gap-x-3 gap-y-3 md:gap-x-6 md:gap-y-4',
-            isSidebarOpen
-              ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
-              : 'grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5'
-          ]"
+          class="grid gap-x-3 gap-y-3 md:gap-x-6 md:gap-y-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
         >
           <UCard
             v-for="item in section.items"
@@ -42,8 +41,8 @@
             :href="item.url"
             target="_blank"
             :ui="{
-              root: 'group cursor-pointer transition-all duration-300 hover:scale-105 rounded-full overflow-hidden bg-white/10 dark:bg-gray-900/10 backdrop-blur-sm dark:shadow-[inset_-2px_2px_2px_0_rgba(255,255,255,0.2),-2px_2px_2px_2px_rgba(0,0,0,0.4)] shadow-[inset_0_2px_2px_0_rgba(0,0,0,0.1)] hover:shadow-[0_0_0_1px_rgba(255,255,255,0.15),0_12px_24px_rgba(0,0,0,0.4)] dark:hover:shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_12px_24px_rgba(0,0,0,0.7)] ring-0',
-              body: 'px-2 py-1.5 md:px-3 md:py-2 relative'
+              root: 'group cursor-pointer transition-all duration-500 rounded-full overflow-hidden bg-white/10 dark:bg-gray-900/10 backdrop-blur-sm dark:shadow-[inset_-2px_2px_2px_0_rgba(255,255,255,0.2),-2px_2px_2px_2px_rgba(0,0,0,0.4)]  shadow-[inset_0_2px_2px_0_rgba(0,0,0,0.1)] hover:scale-[105%] hover:shadow-[inset_-2px_2px_2px_1px_rgba(255,255,255,0.2),-2px_2px_4px_2px_rgba(0,0,0,0.4)] ring-0',
+              body: 'px-2 py-1.5 md:px-3 md:py-2 relative',
             }"
           >
             <div class="flex items-center gap-2 md:gap-2.5">
@@ -55,17 +54,14 @@
                   'rounded-full bg-gray-100/80 dark:bg-gray-800/80 backdrop-blur-sm flex items-center justify-center shrink-0 shadow-inner',
                   isSidebarOpen
                     ? 'w-7 h-7 md:w-9 md:h-9'
-                    : 'w-8 h-8 md:w-9 md:h-9'
+                    : 'w-8 h-8 md:w-9 md:h-9',
                 ]"
               />
 
               <!-- 文字内容 - 响应式字体 -->
-              <div class="flex-1 min-w-0 pr-0.5 md:pr-1">
+              <div class="flex-1 min-w-0">
                 <h3
-                  :class="[
-                    'text-gray-900 dark:text-white font-medium leading-tight truncate group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors',
-                    isSidebarOpen ? 'text-xs md:text-sm' : 'text-xs md:text-sm'
-                  ]"
+                  class="text-gray-900 dark:text-white font-medium leading-tight truncate group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors text-xs md:text-sm"
                 >
                   {{ item.name }}
                 </h3>
@@ -74,7 +70,7 @@
                     'text-gray-600 dark:text-gray-400 leading-tight truncate',
                     isSidebarOpen
                       ? 'text-[10px] md:text-xs'
-                      : 'text-[9px] md:text-xs'
+                      : 'text-[9px] md:text-xs',
                   ]"
                 >
                   {{ item.description }}
@@ -83,11 +79,11 @@
 
               <!-- 右侧箭头图标 - 移动端隐藏 -->
               <div
-                class="hidden md:block opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0.5 shrink-0"
+                class="hidden md:block opacity-0 group-hover:opacity-100 transition-all duration-500 shrink-0"
               >
                 <UIcon
-                  name="i-lucide-arrow-right"
-                  class="text-gray-400 dark:text-primary-600 w-5 h-5 stroke-3"
+                  name="i-lucide-external-link"
+                  class="text-gray-400 dark:text-primary-600 w-5 h-5"
                 />
               </div>
             </div>
@@ -100,7 +96,7 @@
           class="mt-6 md:mt-10"
           size="sm"
           :ui="{
-            border: 'border-gray-900 dark:border-gray-100'
+            border: 'border-gray-900 dark:border-gray-100',
           }"
         />
       </section>
@@ -114,16 +110,14 @@
               name="i-heroicons-information-circle"
               class="text-xl md:text-2xl text-emerald-400"
             />
-            <h3 class="text-lg md:text-xl font-bold">
-              关于本站
-            </h3>
+            <h3 class="text-lg md:text-xl font-bold">关于本站</h3>
           </div>
           <UModal
             v-model:open="open"
             :ui="{
               content:
                 'w-80 bg-transparent backdrop-blur-md ring-0 shadow-[inset_0_0_4px_1px_rgba(255,255,255,0.6),0_0_8px_1px_rgba(0,0,0,0.6)]',
-              header: 'hidden'
+              header: 'hidden',
             }"
             :overlay="false"
           >
@@ -136,10 +130,7 @@
             </span>
             <template #body>
               <div class="h-40 flex flex-col justify-around items-center">
-                <div
-                  class="w-full"
-                  @mouseenter="hoveredIndex = 1"
-                >
+                <div class="w-full" @mouseenter="hoveredIndex = 1">
                   <UButton
                     class="w-full flex justify-center text-2xl active:bg-primary relative"
                     @click="changeNavMode('security')"
@@ -152,10 +143,7 @@
                     <span>H! 是不行的!</span>
                   </UButton>
                 </div>
-                <div
-                  class="w-full"
-                  @mouseenter="hoveredIndex = 2"
-                >
+                <div class="w-full" @mouseenter="hoveredIndex = 2">
                   <UButton
                     class="w-full flex justify-center bg-error hover:bg-error/80 active:bg-error text-2xl relative"
                     @click="changeNavMode('insecurity')"
@@ -178,102 +166,115 @@
 </template>
 
 <script setup lang="ts">
-import navDataJson from '~/assets/data/nav.json'
+import navDataJson from "~/assets/data/nav.json";
 
 // 1. 获取Nav状态
-const navMode = useNavMode()
-const navData = navDataJson as NavData
+const navMode = useNavMode();
+const navData = navDataJson as NavData;
 const curentNavData = computed(() => {
-  return navData[navMode.value]
-})
-const scrollContainer = ref<HTMLElement | null>(null)
-const sectionRefs = ref<Record<string, HTMLElement>>({})
+  return navData[navMode.value];
+});
+const scrollContainer = ref<HTMLElement | null>(null);
+const sectionRefs = ref<Record<string, HTMLElement>>({});
 
 // 获取全局状态
-const activeSection = useActiveNavId()
-const isManualScrolling = useManualScrolling()
-const isSidebarOpen = useSideBarMode()
+const activeSection = useActiveNavId();
+const isManualScrolling = useManualScrolling();
+const isSidebarOpen = useSideBarMode();
 
-let observer: IntersectionObserver | null = null
+let observer: IntersectionObserver | null = null;
 
 // --- 核心方法：初始化/刷新观察器 ---
 const initObserver = () => {
-  if (observer) observer.disconnect()
+  if (observer) observer.disconnect();
 
   // 清空之前的旧引用，确保重新绑定
-  sectionRefs.value = {}
+  sectionRefs.value = {};
 
   nextTick(() => {
-    if (!scrollContainer.value) return
+    if (!scrollContainer.value) return;
 
     observer = new IntersectionObserver(
       (entries) => {
         // 如果是手动点击引起的滚动，直接跳过逻辑
-        if (isManualScrolling.value) return
+        if (isManualScrolling.value) return;
 
         // 找到当前进入视口比例最高的元素
-        const visibleEntry = entries.find(entry => entry.isIntersecting)
+        const visibleEntry = entries.find((entry) => entry.isIntersecting);
         if (visibleEntry) {
-          const id = (visibleEntry.target as HTMLElement).dataset.section
+          const id = (visibleEntry.target as HTMLElement).dataset.section;
           if (id && activeSection.value !== id) {
-            activeSection.value = id
+            activeSection.value = id;
           }
         }
       },
       {
         root: scrollContainer.value,
         // 判定区域集中在屏幕中上部，提升灵敏度
-        rootMargin: '-20% 0px -80% 0px',
-        threshold: [0, 0.1, 0.5]
-      }
-    )
+        rootMargin: "-20% 0px -80% 0px",
+        threshold: [0, 0.1, 0.5],
+      },
+    );
 
     // 重新观察当前模式下的所有 section
-    const elements = scrollContainer.value.querySelectorAll('section[data-section]')
-    elements.forEach(el => observer?.observe(el))
-  })
-}
+    const elements = scrollContainer.value.querySelectorAll(
+      "section[data-section]",
+    );
+    elements.forEach((el) => observer?.observe(el));
+  });
+};
 
 // 监听导航模式变化：当数据切换时，必须销毁并重建观察器
-watch(navMode, () => {
-  // 重置状态
-  const firstKey = Object.keys(curentNavData.value)[0]
-  if (firstKey) activeSection.value = firstKey
+watch(
+  navMode,
+  () => {
+    // 重置状态
+    const firstKey = Object.keys(curentNavData.value)[0];
+    if (firstKey) activeSection.value = firstKey;
 
-  // 延迟初始化确保 DOM 已渲染
-  initObserver()
-}, { immediate: true })
+    // 延迟初始化确保 DOM 已渲染
+    initObserver();
+  },
+  { immediate: true },
+);
 
 onMounted(() => {
-  initObserver()
-})
+  initObserver();
+});
 
 onUnmounted(() => {
-  observer?.disconnect()
-})
+  observer?.disconnect();
+});
 
 // UModal 及切换逻辑
-const open = ref(false)
-defineShortcuts({ shift_tab: () => (open.value = !open.value) })
-const hoveredIndex = ref(0)
+const open = ref(false);
+defineShortcuts({ shift_tab: () => (open.value = !open.value) });
+const hoveredIndex = ref(0);
 
-function changeNavMode(mode: 'security' | 'insecurity') {
+function changeNavMode(mode: "security" | "insecurity") {
   if (mode !== navMode.value) {
-    navMode.value = mode
+    navMode.value = mode;
     // 切换模式后将滚动条重置到顶部
-    scrollContainer.value?.scrollTo({ top: 0 })
+    scrollContainer.value?.scrollTo({ top: 0 });
   }
-  open.value = false
+  open.value = false;
 }
 </script>
 
-<style scoped>
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+<style lang="scss" scoped>
+:root{
+  --default-shadow: inset_0_2px_2px_0_rgba(0,0,0,0.1);
 }
+.dark {
+  --default-shadow: inset_-2px_2px_2px_0_rgba(255,255,255,0.2),-2px_2px_2px_2px_rgba(0,0,0,0.4);
+}
+
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 .underline-animation {
   -webkit-box-decoration-break: clone;
@@ -288,9 +289,8 @@ function changeNavMode(mode: 'security' | 'insecurity') {
   background-size: 100% 20%;
   transition: background-size 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-}
-
-.underline-animation:hover {
-  background-size: 100% 50%;
+  &:hover {
+    background-size: 100% 50%;
+  }
 }
 </style>

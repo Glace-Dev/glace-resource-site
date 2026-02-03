@@ -13,7 +13,7 @@
           variant="ghost"
           color="neutral"
           size="xl"
-          class="hover:bg-white/10"
+          class="hover:bg-(--bg-color-button)/10 active:bg-(--bg-color-button)/20"
           @click="toggleSidebar"
         />
         <h1
@@ -26,12 +26,12 @@
     <template #right>
       <UButton
         icon="i-simple-icons-github"
+        class="hover:bg-(--bg-color-button)/10 active:bg-(--bg-color-button)/20"
         label="GitHub"
         to="https://github.com/PuppetRuler"
         target="_blank"
         variant="ghost"
         color="neutral"
-        class="hover:bg-white/10"
       />
       <ColorModeButton />
     </template>
@@ -39,11 +39,11 @@
 </template>
 
 <script setup lang="ts">
-const isSidebarOpen = useSideBarMode()
+const isSidebarOpen = useSideBarMode();
 
 const toggleSidebar = () => {
-  isSidebarOpen.value = !isSidebarOpen.value
-}
+  isSidebarOpen.value = !isSidebarOpen.value;
+};
 </script>
 
 <style lang="scss">

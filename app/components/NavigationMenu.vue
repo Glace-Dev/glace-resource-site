@@ -13,7 +13,7 @@
           'w-full flex items-center rounded-lg transition-all duration-300 group text-md pl-4 h-12 px-0 relative',
           activeSection === key
             ? 'bg-emerald-500/10 text-emerald-400'
-            : 'text-gray-800 hover:bg-gray-200 hover:text-black  dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white'
+            : 'text-gray-800 hover:bg-primary/5 dark:hover:bg-primary-50/10 hover:text-black  dark:text-gray-400 dark:hover:text-white'
         ]"
         :title="!isSidebarOpen ? group.label : undefined"
         @click="handleNavigate(key as string)"
