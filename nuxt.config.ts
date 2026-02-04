@@ -11,7 +11,7 @@ export default defineNuxtConfig({
         // 核心：Google 搜索抓取的图标
         { rel: 'icon', type: 'image/png', href: '/favicon.png' },
         // Apple 设备图标（建议也加上）
-        { rel: 'apple-touch-icon', href: '/img/favicon-48.png' }
+        { rel: 'apple-touch-icon', href: '/favicon.png' }
       ],
       htmlAttrs: {
         lang: 'zh-CN' // 设置为中文
