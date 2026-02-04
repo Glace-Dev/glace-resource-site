@@ -10,6 +10,7 @@
         />
         <UButton
           icon="i-heroicons-bars-3"
+          label="toggle-sidebar"
           variant="ghost"
           color="neutral"
           size="xl"
@@ -39,11 +40,11 @@
 </template>
 
 <script setup lang="ts">
-const isSidebarOpen = useSideBarMode();
+const isSidebarOpen = useSideBarMode()
 
 const toggleSidebar = () => {
-  isSidebarOpen.value = !isSidebarOpen.value;
-};
+  isSidebarOpen.value = !isSidebarOpen.value
+}
 </script>
 
 <style lang="scss">

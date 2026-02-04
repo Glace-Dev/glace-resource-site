@@ -2,7 +2,6 @@
   <div class="h-full w-full bg-img">
     <!-- 遮罩层 -->
     <div class="fixed inset-0 vignette-overlay backdrop-saturate-150 z-0" />
-    <AppBackground />
 
     <!-- 骨架屏状态 -->
     <template v-if="loading">

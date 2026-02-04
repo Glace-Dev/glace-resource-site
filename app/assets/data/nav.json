@@ -393,6 +393,18 @@
           "url": "https://www.justnainai.com/",
           "description": "宅宅的妙妙屋 - ACG 游戏社区",
           "logo": "/img/icons/justnainai.webp"
+        },
+        {
+          "name": "V2EX",
+          "url": "https://www.v2ex.com/",
+          "description": "创意工作者社区",
+          "logo": "/img/icons/v2ex.webp"
+        },
+        {
+          "name": "1024社区",
+          "url": "https://1024.day/",
+          "description": "Linux，Code，VPS，主机买卖等相关话题的网络社区",
+          "logo": "/img/icons/1024.day.webp"
         }
       ]
     },
@@ -483,6 +495,12 @@
           "url": "https://picsmaller.com/",
           "description": "图片智能压缩",
           "logo": "/img/icons/pic-smaller.webp"
+        },
+        {
+          "name": "squoosh",
+          "url": "https://squoosh.app/",
+          "description": "图片压缩工具",
+          "logo": "/img/icons/squoosh.webp"
         },
         {
           "name": "Photopea",
