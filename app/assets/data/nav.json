@@ -405,6 +405,12 @@
           "url": "https://1024.day/",
           "description": "Linux，Code，VPS，主机买卖等相关话题的网络社区",
           "logo": "/img/icons/1024.day.webp"
+        },
+        {
+          "name": "DigVPS",
+          "url": "https://digvps.com/",
+          "description": "VPS测评平台",
+          "logo": "/img/icons/digvps.webp"
         }
       ]
     },
