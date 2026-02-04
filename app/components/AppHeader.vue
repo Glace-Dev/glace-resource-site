@@ -10,7 +10,7 @@
         />
         <UButton
           icon="i-heroicons-bars-3"
-          label="toggle-sidebar"
+          aria-label="toggle-sidebar"
           variant="ghost"
           color="neutral"
           size="xl"

@@ -1,7 +1,7 @@
 <template>
   <UButton
     :icon="currentIcon"
-    label="toggle-color-mode"
+    aria-label="toggle-color-mode"
     variant="ghost"
     color="neutral"
     class="hover:bg-(--bg-color-button)/10 active:bg-(--bg-color-button)/20 transition-none"
