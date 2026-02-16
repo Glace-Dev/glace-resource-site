@@ -99,6 +99,12 @@
           "url": "https://soutubot.moe/",
           "description": "聚合搜图工具",
           "logo": "/img/icons/soutubot.webp"
+        },
+        {
+          "name": "Anitabi",
+          "url": "https://www.anitabi.cn/map",
+          "description": "日本动画资源地图",
+          "logo": "/img/icons/anitabi.webp"
         }
       ]
     },
