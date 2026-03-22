@@ -555,6 +555,12 @@
           "url": "https://ezremove.ai/zh/video-watermark-remover/",
           "description": "免费在线视频去水印（无需登录，无需注册）",
           "logo": "/img/icons/ezremove.webp"
+        },
+        {
+          "name": "YouTube Downloader",
+          "url": "https://app.ytdown.to/en21/",
+          "description": "YouTube 视频下载器",
+          "logo": "/img/icons/ytdown.webp"
         }
       ]
     },
