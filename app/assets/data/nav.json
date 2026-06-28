@@ -113,12 +113,6 @@
       "icon": "i-heroicons-heart",
       "items": [
         {
-          "name": "Kimochi Gaming",
-          "url": "https://kimochi.info/",
-          "description": "Eroge 资源站",
-          "logo": "/img/icons/kimochi-gaming.webp"
-        },
-        {
           "name": "Hikarinagi 社区",
           "url": "https://www.hikarinagi.org/",
           "description": "ACGN 文化交流",
@@ -183,6 +177,12 @@
           "url": "https://acgdb.de/",
           "description": "主页 | ACG Database",
           "logo": "/img/icons/acg-database.webp"
+        },
+        {
+          "name": "Kimochi Gaming",
+          "url": "https://kimochi.info/",
+          "description": "Eroge 资源站",
+          "logo": "/img/icons/kimochi-gaming.webp"
         },
         {
           "name": "在线玩Gal",
